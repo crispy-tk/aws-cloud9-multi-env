@@ -1,0 +1,38 @@
+formatter: "markdown table"
+footer-from: ""
+sort:
+  enabled: true
+  by: name
+
+content: |-
+    {{ .Header }}
+
+    {{ include "docs/header.md" }}
+
+    {{ include "docs/getting-started.md" }}
+
+    {{ include "docs/customization.md" }}
+
+    ## Examples
+    Example of `terraform.tfvars` file.
+    ```hcl
+    {{ include "docs/example.md" }}
+    ```  
+
+    {{ include "docs/clean-up.md" }}
+    
+    {{ .Providers }}
+
+    {{ .Outputs }}
+
+    {{ .Resources }}
+
+    {{ include "docs/footer.md" }}
+
+output:
+  file: README.md
+  mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->
