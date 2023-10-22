@@ -9,6 +9,8 @@ content: |-
 
     {{ include "docs/header.md" }}
 
+    {{ include "docs/before-starting.md" }}
+
     {{ include "docs/getting-started.md" }}
 
     {{ include "docs/customization.md" }}
@@ -18,6 +20,7 @@ content: |-
     ```hcl
     {{ include "docs/example.md" }}
     ```  
+    {{ include "docs/how-to.md" }}
 
     {{ include "docs/clean-up.md" }}
     
