@@ -18,18 +18,12 @@ variable "profile" {
 
 variable "instance_type" {
   description = "Define instance type"
-  type = string
-  default = "t2.micro"
-}
-
-variable "existing_user" {
-  description = "Add user to membership. Permissions are: `read-only` OR `read-write`"
-  type = string
-  default = ""
+  type        = string
+  default     = "t2.micro"
 }
 
 variable "members_list" {
-  description = "Number of environments"
-  type = list(string)
-  default = []
+  description = "Add user to membership. Permissions are: `read-only` OR `read-write`. The number of members will determine the number of instances."
+  type        = list(string)
+  default     = []
 }
