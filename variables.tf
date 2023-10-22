@@ -22,8 +22,14 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
-variable "member" {
+variable "existing_user" {
   description = "Add user to membership. Permissions are: `read-only` OR `read-write`"
   type = string
   default = ""
+}
+
+variable "members_list" {
+  description = "Number of environments"
+  type = list(string)
+  default = []
 }
