@@ -1,8 +1,10 @@
-# Cloud9 Multi-Environment Provisioning with Terraform
-
 <div style="text-align:center">
     <img src="/images/tf_aws.png" alt="Terraform and AWS logo" height="100"/>
 </div>
+
+# Cloud9 Multi-Environment Provisioning with Terraform
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![repo-size](https://img.shields.io/github/repo-size/crispy-tk/aws-cloud9-multi-env )
 
 ## Overview
 
