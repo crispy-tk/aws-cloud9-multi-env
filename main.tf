@@ -1,7 +1,7 @@
 resource "aws_cloud9_environment_ec2" "cloud9_instance" {
   for_each      = toset(var.members_list)
   instance_type = var.instance_type
-  name          = "${var.project}" != "" ? "${var.project}-${each.value}" : "example-${each.value}-${random_id.env.id}"
+  name          = "${var.project}" != "" ? "${var.project}-${each.value}" : "${var.project}-${each.value}-${random_id.env.id}"
 }
 
 # Create new user to access the Cloud9 Environment
@@ -32,7 +32,7 @@ resource "aws_iam_user_login_profile" "profile" {
 resource "aws_cloud9_environment_membership" "user_list" {
   for_each       = toset(var.members_list)
   environment_id = aws_cloud9_environment_ec2.cloud9_instance[each.value].id
-  permissions    = "read-write"
+  permissions    = var.members_permissions
   user_arn       = aws_iam_user.user[each.value].arn
 }
 

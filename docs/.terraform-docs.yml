@@ -1,0 +1,41 @@
+formatter: "markdown table"
+settings: 
+  default: true
+  hide-empty: false
+  required: true
+  sensitive: true
+  type: true
+sort:
+  enabled: true
+  by: required
+
+content: |-
+    {{ .Header }}
+
+    {{ include "./docs/.header.md" }}
+
+    {{ include "./docs/.contents.md" }}
+
+    ## Directory Structure
+    
+    ```txt
+    {{ include "./docs/.tree" }}
+    ```
+
+    {{ .Providers }}
+
+    {{ .Inputs }}
+
+    {{ .Outputs }}
+
+    {{ .Resources }}
+
+    {{ include "./docs/.footer.md" }}
+
+output:
+  file: README.md
+  mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->

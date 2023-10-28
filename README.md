@@ -75,12 +75,15 @@ myproject-username-{randomID}
 You can refer to the AWS Cloud9 documentation for more configuration options.
 
 ## Examples
+
 Example of `terraform.tfvars` file.
+
 ```hcl
 project = "project-name"
 profile = "yourawsprofile"
 members_list = ["member01", "member02"]
-```
+```  
+
 ## How to Use
 
 1. Run the following command in the Terminal to retrieve the users passwords.
@@ -100,12 +103,44 @@ When you no longer need a Cloud9 environment, you can destroy it with Terraform.
 terraform destroy
 ```
 
+## Directory Structure
+
+```txt
+.
+├── docs
+├── generate-readme.sh
+├── images
+│   └── tf_aws.png
+├── LICENSE
+├── local.auto.tfvars
+├── main.tf
+├── provider.tf
+├── README.md
+├── terraform.tfstate
+├── terraform.tfstate.backup
+├── teste.auto.tfvars
+└── variables.tf
+
+3 directories, 11 files
+```
+
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 5.22.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_members_list"></a> [members\_list](#input\_members\_list) | Add user to membership. The number of members will determine the number of instances. | `list(string)` | n/a | yes |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Define instance type. | `string` | `"t2.micro"` | no |
+| <a name="input_members_permissions"></a> [members\_permissions](#input\_members\_permissions) | Permissions are: `read-only` OR `read-write`. | `string` | `"read-write"` | no |
+| <a name="input_profile"></a> [profile](#input\_profile) | Set your AWS CLI profile. | `string` | `"default"` | no |
+| <a name="input_project"></a> [project](#input\_project) | Set your cloud9 project name. | `string` | `"example"` | no |
+| <a name="input_region"></a> [region](#input\_region) | Define the provisioned region. | `string` | `"us-east-1"` | no |
 
 ## Outputs
 
