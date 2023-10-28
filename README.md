@@ -1,9 +1,9 @@
 <!-- BEGIN_TF_DOCS -->
 
 
-<div style="text-align:center">
-    <img src="/images/tf_aws.png" alt="Terraform and AWS logo" height="100"/>
-</div>
+<p align="center">
+    <img src="./images/tf_aws.png" alt="Terraform and AWS logo" height="100"/>
+</p>
 
 # Cloud9 Multi-Environment Provisioning with Terraform
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
@@ -12,6 +12,10 @@
 ## Overview
 
 This project provides a Terraform configuration to provision multiple AWS Cloud9 environments effortlessly. AWS Cloud9 is a cloud-based integrated development environment (IDE) that provides a convenient way to write, run, and debug code in various programming languages. With this Terraform setup, you can easily create and manage multiple Cloud9 environments for your development, testing, or collaborative needs.
+
+<p align="center">
+    <img src="./images/cloud9ui.png" alt="Cloud9 UI" align="center"/>
+</p>
 
 ## Before starting
 
@@ -110,6 +114,7 @@ terraform destroy
 ├── docs
 ├── generate-readme.sh
 ├── images
+│   ├── cloud9ui.png
 │   └── tf_aws.png
 ├── LICENSE
 ├── local.auto.tfvars
@@ -121,7 +126,7 @@ terraform destroy
 ├── teste.auto.tfvars
 └── variables.tf
 
-3 directories, 11 files
+3 directories, 12 files
 ```
 
 ## Providers

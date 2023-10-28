@@ -2,6 +2,7 @@
 ├── docs
 ├── generate-readme.sh
 ├── images
+│   ├── cloud9ui.png
 │   └── tf_aws.png
 ├── LICENSE
 ├── local.auto.tfvars
@@ -13,4 +14,4 @@
 ├── teste.auto.tfvars
 └── variables.tf
 
-3 directories, 11 files
+3 directories, 12 files
