@@ -117,13 +117,9 @@ terraform destroy
 │   ├── cloud9ui.png
 │   └── tf_aws.png
 ├── LICENSE
-├── local.auto.tfvars
 ├── main.tf
 ├── provider.tf
 ├── README.md
-├── terraform.tfstate
-├── terraform.tfstate.backup
-├── teste.auto.tfvars
 └── variables.tf
 
 3 directories, 12 files
