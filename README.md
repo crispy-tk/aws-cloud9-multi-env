@@ -35,12 +35,12 @@ Before using this project, ensure you have the following prerequisites:
 1. Clone this repository to your local machine.
 
 ```shell
-git clone https://github.com/crispy-tk/gh-cloud9-env.git
+git clone https://github.com/crispy-tk/aws-cloud9-multi-env.git
 ```
 
 2. Change into the project directory.
 ```shell
-cd cloud9-multi-environments
+cd aws-cloud9-multi-env
 ```
 
 3. Create a `terraform.tfvars` file to customize your project. You can adjust parameters such as the `instance_type`, `members_list`, and more.
@@ -64,13 +64,17 @@ terraform apply
 
 8. Terraform will create the Cloud9 environments according to your specifications.
 
-## Configuration
+## Cloud9 Configuration
 
 To customize your Cloud9 environments, update the terraform.tfvars file with your desired configurations, including but not limited to:
 
-* `instance_type`: The EC2 instance type to use. The default type is `t2.micro`.
-* `project`: The name of your Cloud9 environment. It will be composed of the `project` parameter and a name from the `members_list` parameter.
-* `members_list`: A list of usernames to associate with the Cloud9 environment. The list of names will be used to create new IAM Users
+* `region`: The region where the Cloud9 will be provisioned.
+* `instance_type`: The EC2 instance type to use. 
+* `project`: The name of your Cloud9 environment. It will be composed of the `project` parameter and a name from the `new_members` and `existing_members` parameter.
+* `new_members`: A list of usernames to associate with the Cloud9 environment. The list of names will be used to create new IAM Users and assign to a Cloud IDE.
+* `existing_members`: A list of exinting users to associate with the Cloud9 environment. The list of names will be used to assign to a Cloud IDE.
+
+Example of Cloud9 environment naming.
 
 ```
 myproject-username-{randomID}
@@ -87,6 +91,10 @@ project = "project-name"
 profile = "yourawsprofile"
 members_list = ["member01", "member02"]
 ```  
+
+## Cloud9 Documentation
+* [AWS Documentation - Cloud9 Language Support](https://docs.aws.amazon.com/cloud9/latest/user-guide/language-support.html)
+* [AWS Documentation - Cloud9 Browsers](https://docs.aws.amazon.com/cloud9/latest/user-guide/browsers.html)
 
 ## How to Use
 
@@ -122,7 +130,7 @@ terraform destroy
 ├── README.md
 └── variables.tf
 
-3 directories, 12 files
+3 directories, 13 files
 ```
 
 ## Providers
@@ -136,7 +144,8 @@ terraform destroy
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_members_list"></a> [members\_list](#input\_members\_list) | Add user to membership. The number of members will determine the number of instances. | `list(string)` | n/a | yes |
+| <a name="input_existing_members"></a> [existing\_members](#input\_existing\_members) | Add existing users to membership. The number of members will determine the number of instances. | `list(string)` | n/a | yes |
+| <a name="input_new_members"></a> [new\_members](#input\_new\_members) | Add new users to membership. The number of members will determine the number of instances. | `list(string)` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Define instance type. | `string` | `"t2.micro"` | no |
 | <a name="input_members_permissions"></a> [members\_permissions](#input\_members\_permissions) | Permissions are: `read-only` OR `read-write`. | `string` | `"read-write"` | no |
 | <a name="input_profile"></a> [profile](#input\_profile) | Set your AWS CLI profile. | `string` | `"default"` | no |
@@ -155,12 +164,15 @@ terraform destroy
 | Name | Type |
 |------|------|
 | [aws_cloud9_environment_ec2.cloud9_instance](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/cloud9_environment_ec2) | resource |
-| [aws_cloud9_environment_membership.user_list](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/cloud9_environment_membership) | resource |
-| [aws_iam_user.user](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/iam_user) | resource |
+| [aws_cloud9_environment_membership.existing_user_membership](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/cloud9_environment_membership) | resource |
+| [aws_cloud9_environment_membership.new_user_membership](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/cloud9_environment_membership) | resource |
+| [aws_iam_user.new_user](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/iam_user) | resource |
 | [aws_iam_user_login_profile.profile](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/iam_user_login_profile) | resource |
-| [aws_iam_user_policy_attachment.policy_attach](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.policy_attach_existing](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/iam_user_policy_attachment) | resource |
+| [aws_iam_user_policy_attachment.policy_attach_new](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/resources/iam_user_policy_attachment) | resource |
 | [random_id.env](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/id) | resource |
 | [aws_iam_policy.cloud9](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/data-sources/iam_policy) | data source |
+| [aws_iam_user.existing_user](https://registry.terraform.io/providers/hashicorp/aws/5.22.0/docs/data-sources/iam_user) | data source |
 
 ## Contributing
 
