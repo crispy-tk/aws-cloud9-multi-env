@@ -28,7 +28,12 @@ variable "members_permissions" {
   default = "read-write"
 }
 
-variable "members_list" {
-  description = "Add user to membership. The number of members will determine the number of instances."
+variable "new_members" {
+  description = "Add new users to membership. The number of members will determine the number of instances."
+  type        = list(string)
+}
+
+variable "existing_members" {
+  description = "Add existing users to membership. The number of members will determine the number of instances."
   type        = list(string)
 }
